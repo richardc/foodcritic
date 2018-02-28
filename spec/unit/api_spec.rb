@@ -201,6 +201,10 @@ describe FoodCritic::Api do
     it "raises if passed an empty string" do
       expect { api.cookbook_name("") }.to raise_error ArgumentError
     end
+    it "returns the cookbook name when passed a recipe in a deep path" do
+      recipe_path = "omnibus/files/my-cookbooks/apache2/recipes/default.rb"
+      expect(api.cookbook_name(recipe_path)).to eq "apache2"
+    end
     it "returns the cookbook name when passed a recipe" do
       recipe_path = "cookbooks/apache2/recipes/default.rb"
       expect(api.cookbook_name(recipe_path)).to eq "apache2"
